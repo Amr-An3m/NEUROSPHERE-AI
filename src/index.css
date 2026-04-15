@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 2%;
+    --foreground: 180 100% 97%;
+    --card: 220 15% 5%;
+    --card-foreground: 180 100% 97%;
+    --popover: 220 15% 5%;
+    --popover-foreground: 180 100% 97%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 20% 2%;
+    --secondary: 280 100% 60%;
+    --secondary-foreground: 180 100% 97%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 160 100% 50%;
+    --accent-foreground: 220 20% 2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 195 100% 50%;
+    --radius: 0.5rem;
+    
+    /* Custom Neural Space Colors */
+    --neural-black: 220 20% 2%;
+    --neural-blue: 195 100% 50%;
+    --neural-purple: 280 100% 60%;
+    --neural-green: 160 100% 50%;
+    --neural-cyan: 180 100% 50%;
+    --neural-glow: 195 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, hsl(220 20% 2%) 0%, hsl(240 30% 5%) 50%, hsl(220 20% 2%) 100%);
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer components {
+  .neural-text {
+    background: linear-gradient(90deg, hsl(var(--neural-blue)), hsl(var(--neural-purple)), hsl(var(--neural-cyan)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .neural-glow {
+    text-shadow: 
+      0 0 10px hsl(var(--neural-blue) / 0.8),
+      0 0 20px hsl(var(--neural-blue) / 0.6),
+      0 0 40px hsl(var(--neural-purple) / 0.4);
+  }
+  
+  .glass-panel {
+    background: rgba(5, 10, 20, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 
+      0 0 30px rgba(0, 200, 255, 0.1),
+      inset 0 0 30px rgba(0, 200, 255, 0.05);
+  }
+  
+  .hologram-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg-color, rgba(5, 10, 20, 0.8)), var(--bg-color, rgba(5, 10, 20, 0.8))) padding-box,
+                linear-gradient(135deg, hsl(var(--neural-blue)), hsl(var(--neural-purple)), hsl(var(--neural-green))) border-box;
+  }
+  
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--neural-cyan)), transparent);
+    animation: scan 3s linear infinite;
+  }
+  
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  
+  .data-stream {
+    background: linear-gradient(180deg, 
+      transparent 0%, 
+      hsl(var(--neural-blue) / 0.3) 50%, 
+      transparent 100%);
+    animation: dataFlow 2s linear infinite;
+  }
+  
+  @keyframes dataFlow {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+  
+  .neural-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--neural-blue) / 0.5),
+                  0 0 40px hsl(var(--neural-purple) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--neural-blue) / 0.8),
+                  0 0 80px hsl(var(--neural-purple) / 0.5);
+    }
+  }
+  
+  .warp-transition {
+    animation: warpEffect 1s ease-out forwards;
+  }
+  
+  @keyframes warpEffect {
+    0% { 
+      transform: scale(1) rotate(0deg);
+      filter: blur(0px);
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+      filter: blur(20px) brightness(2);
+    }
+    100% { 
+      transform: scale(1) rotate(360deg);
+      filter: blur(0px);
+    }
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  .translate-z-50 {
+    transform: translateZ(50px);
+  }
+  
+  .text-neural-blue {
+    color: hsl(var(--neural-blue));
+  }
+  
+  .text-neural-purple {
+    color: hsl(var(--neural-purple));
+  }
+  
+  .text-neural-green {
+    color: hsl(var(--neural-green));
+  }
+  
+  .text-neural-cyan {
+    color: hsl(var(--neural-cyan));
+  }
+  
+  .bg-neural-black {
+    background-color: hsl(var(--neural-black));
+  }
+  
+  .border-neural-blue {
+    border-color: hsl(var(--neural-blue));
+  }
+  
+  .border-neural-purple {
+    border-color: hsl(var(--neural-purple));
+  }
+  
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(var(--neural-blue) / 0.6);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--neural-purple) / 0.6);
+  }
+  
+  .glow-green {
+    box-shadow: 0 0 20px hsl(var(--neural-green) / 0.6);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(220 20% 5%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--neural-blue)), hsl(var(--neural-purple)));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(var(--neural-cyan)), hsl(var(--neural-green)));
+}
+
+/* Selection Styling */
+::selection {
+  background: hsl(var(--neural-blue) / 0.3);
+  color: hsl(var(--neural-cyan));
+}
